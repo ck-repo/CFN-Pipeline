@@ -13,34 +13,22 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  taskcat:
+    name: Run taskcat tests
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-- name: Run taskcat tests
-  # You may pin to the exact commit or the version.
-  # uses: ShahradR/action-taskcat@e9fb2b06f6882ac122ac1eed84d689ab277ff467
-  uses: ShahradR/action-taskcat@v1.4.0
-  with:
-    # Command, subcommands, and arguments to pass to taskcat. Should be formatted as "[args] <command> [args] [subcommand] [args]". The taskcat invocation itself is already handled by the action-no need to prefix the command with "taskcat".
-
-    commands: 
-    # If set to "true", this action will update taskcat its the latest version before running tests.
-
-    update_taskcat: # optional
-    # If set to "true", this action will update cfn-lit to its latest version before running tests.
-
-    update_cfn_lint: # optional
-
+      - uses: actions/setup-python@v2
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2
+      - name: Run taskcat test run
+        uses: ShahradR/action-taskcat@v1
+        with:
+          commands: test run
+          update_taskcat: true
+          update_cfn_lint: true
