@@ -7,6 +7,7 @@ Repo for the creation of a AWS CodePipeline implementation that provides the fol
 - Build/Test Stage: performs Linting and Taskcat testing (deploys stacks, deletes stacks and creation of a HTML report in S3)
 - Deploy Stage: if tests are successful a Lambda function is invoked to git merge the Source branch into the Release branch ready for release 
 
+
 High Level Overview Diagram
 
 ![image](https://user-images.githubusercontent.com/54940429/124094140-6617b280-da50-11eb-97be-2e01b4b41213.png)
