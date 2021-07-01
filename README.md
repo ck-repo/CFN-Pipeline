@@ -12,4 +12,4 @@ High Level Overview Diagram
 
 ![image](https://user-images.githubusercontent.com/54940429/124094140-6617b280-da50-11eb-97be-2e01b4b41213.png)
 
-Note: CloudFormation template deployment not covered by this pipeline, this is a CloudFormation testing pipeline. 
+Note: CloudFormation stack deployment into a production environment is not covered by this pipeline, this is a CloudFormation testing pipeline. 
