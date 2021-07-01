@@ -2,6 +2,7 @@ project:
   name: cfn-pipelines
   regions:
   - eu-west-2
+  - eu-central-1
 tests:
   default:
     template: ./templates/my-cfn-template.yaml
